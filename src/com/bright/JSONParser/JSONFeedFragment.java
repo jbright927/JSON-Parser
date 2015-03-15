@@ -48,6 +48,9 @@ public class JSONFeedFragment extends Fragment {
 
                 buildTitle();
                 buildItemList();
+
+                HomeActivity homeActivity = (HomeActivity)getActivity();
+                homeActivity.setRefreshActionButtonState(false);
             }
         });
 

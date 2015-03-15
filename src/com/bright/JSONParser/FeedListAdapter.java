@@ -21,7 +21,6 @@ import java.util.ArrayList;
  */
 public class FeedListAdapter extends BaseAdapter {
 
-    private final View rootView;
     private ArrayList<FeedListItem> items;
     private final LayoutInflater inflater;
 
@@ -31,8 +30,6 @@ public class FeedListAdapter extends BaseAdapter {
         if (activity == null) {
             throw new RuntimeException("No Activity");
         }
-
-        this.rootView = rootView;
 
         inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         items = new ArrayList<FeedListItem>();
@@ -79,9 +76,6 @@ public class FeedListAdapter extends BaseAdapter {
 
             final ImageView imageView = (ImageView) view.findViewById(R.id.list_item_image);
 
-            if (item.getImageURL().contains("flag"))
-                Log.d(getClass().getCanonicalName(), "FLAG A");
-
             if (item.getBitmap() == null && !item.isRetrievingBitmap()) {
                 URLtoBitmapAsyncTask task = new URLtoBitmapAsyncTask(item.getImageURL(), new OnTaskCompletedListener() {
                     @Override
@@ -96,9 +90,6 @@ public class FeedListAdapter extends BaseAdapter {
 
                         imageView.setImageBitmap(bm);
                         item.setBitmap(bm);
-
-                        if (item.getImageURL().contains("flag"))
-                            Log.d(getClass().getCanonicalName(), "FLAG B");
 
                         Log.d(getClass().getCanonicalName(), ""+item.getImageURL() + ", " + bm.getByteCount());
                         notifyDataSetChanged();
