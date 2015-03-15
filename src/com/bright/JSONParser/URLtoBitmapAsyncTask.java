@@ -35,7 +35,7 @@ public class URLtoBitmapAsyncTask extends AsyncTask<Void, Void, Void> {
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 
             //Specify a connection timeout, so placeholder images can be displayed
-            urlConnection.setConnectTimeout(1000);
+            urlConnection.setConnectTimeout(1500);
 
             inputStream = urlConnection.getInputStream();
             bitmap = BitmapFactory.decodeStream(inputStream);
