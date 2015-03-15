@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -21,19 +22,29 @@ public class JSONFeedFragment extends Fragment {
 
         rootView = inflater.inflate(R.layout.fragment_jsonfeed, container, false);
 
+        Log.d("BLARGH", "BLARGH");
+
         buildJSONFeed();
 
         return rootView;
 
     }
 
-    void buildJSONFeed() {
+    private void buildJSONFeed() {
 
-        URLtoJSONAsyncTask task = new URLtoJSONAsyncTask(URLtoParse, getActivity(), new OnURLtoJSONTaskCompleted() {
+        URLtoJSONAsyncTask task = new URLtoJSONAsyncTask(URLtoParse, rootView.getContext(), new OnURLtoJSONTaskCompleted() {
             @Override
             public void OnTaskCompleted(JSONObject jObject) {
-                System.out.print("ALL GOOD");
                 Log.d(getClass().getCanonicalName(), "ALL GOOD");
+
+                try {
+                    Log.d(getClass().getCanonicalName(), jObject.getString("title"));
+                    JSONFeedFragment.this.getActivity().getActionBar().setTitle(jObject.getString("title"));
+                }
+                catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
+
             }
         });
 
