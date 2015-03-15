@@ -1,2 +1,2 @@
-# JSON_Parser
-An android app designed to parse JSON, display it in a feed and then promote our glorious Canadian countrymen. 
+# JSON Parser
+This is a simple Android app designed to parse a JSON feed, display content appropriately and then promote our glorious Canadian countrymen
