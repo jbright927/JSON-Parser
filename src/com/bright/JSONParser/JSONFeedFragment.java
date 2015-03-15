@@ -49,6 +49,7 @@ public class JSONFeedFragment extends Fragment {
                 buildTitle();
                 buildItemList();
 
+                //If the refresh spinner is active, deactivate it
                 HomeActivity homeActivity = (HomeActivity)getActivity();
                 homeActivity.setRefreshActionButtonState(false);
             }
@@ -84,6 +85,7 @@ public class JSONFeedFragment extends Fragment {
 
                 item.setAdapter(adapter);
 
+                //If an item has no data, don't display it in the list
                 if (item.getTitleString().equals("null") && item.getDescription().equals("null") && item.getImageURL().equals("null"))
                     continue;
 

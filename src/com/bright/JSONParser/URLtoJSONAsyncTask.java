@@ -56,6 +56,7 @@ public class URLtoJSONAsyncTask extends AsyncTask<Void, Void, Void> {
         }
         // Convert response to string using String Builder
         try {
+            //Display in WINDOWS-1252 encoding instead of UTF-8 to display special characters correctly
             BufferedReader bReader = new BufferedReader(new InputStreamReader(inputStream, "WINDOWS-1252"), 8);
             StringBuilder sBuilder = new StringBuilder();
 

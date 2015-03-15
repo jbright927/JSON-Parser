@@ -5,7 +5,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -83,15 +82,16 @@ public class FeedListAdapter extends BaseAdapter {
 
                         Bitmap bm;
 
-                        if (object == null)
+                        if (object == null) {
                             bm = BitmapFactory.decodeResource(imageView.getResources(), R.drawable.ic_action_help);
+                            Log.e(getClass().getCanonicalName(), "Couldn't retrieve image at: "+item.getImageURL());
+                        }
                         else
                             bm = (Bitmap) object;
 
                         imageView.setImageBitmap(bm);
                         item.setBitmap(bm);
 
-                        Log.d(getClass().getCanonicalName(), ""+item.getImageURL() + ", " + bm.getByteCount());
                         notifyDataSetChanged();
 
                         item.setIsRetrievingBitmap(false);

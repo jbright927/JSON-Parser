@@ -33,6 +33,8 @@ public class URLtoBitmapAsyncTask extends AsyncTask<Void, Void, Void> {
         try {
             URL url = new URL(URLtoParse);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+
+            //Specify a connection timeout, so placeholder images can be displayed
             urlConnection.setConnectTimeout(1000);
 
             inputStream = urlConnection.getInputStream();
