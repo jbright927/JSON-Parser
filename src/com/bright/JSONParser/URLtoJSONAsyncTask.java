@@ -21,9 +21,9 @@ public class URLtoJSONAsyncTask extends AsyncTask<Void, Void, Void> {
     String URLtoParse;
     InputStream inputStream = null;
     String result = "";
-    OnTaskCompleted listener;
+    OnTaskCompletedListener listener;
 
-    public URLtoJSONAsyncTask(String URLtoParse, Context ctx, OnTaskCompleted listener) {
+    public URLtoJSONAsyncTask(String URLtoParse, Context ctx, OnTaskCompletedListener listener) {
         super();
         this.URLtoParse = URLtoParse;
         this.listener = listener;
@@ -56,7 +56,7 @@ public class URLtoJSONAsyncTask extends AsyncTask<Void, Void, Void> {
         }
         // Convert response to string using String Builder
         try {
-            BufferedReader bReader = new BufferedReader(new InputStreamReader(inputStream, "utf-8"), 8);
+            BufferedReader bReader = new BufferedReader(new InputStreamReader(inputStream, "WINDOWS-1252"), 8);
             StringBuilder sBuilder = new StringBuilder();
 
             String line = null;

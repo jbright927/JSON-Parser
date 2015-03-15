@@ -18,7 +18,7 @@ public class JSONFeedFragment extends Fragment {
 
     private View rootView;
     private JSONObject jsonFeed;
-    private JSONFeedListAdapter adapter;
+    private FeedListAdapter adapter;
     String URLtoParse = "https://dl.dropboxusercontent.com/u/746330/facts.json";
 
     @Override
@@ -34,14 +34,14 @@ public class JSONFeedFragment extends Fragment {
     }
 
     private void buildListView() {
-        adapter = new JSONFeedListAdapter(getActivity(), rootView);
+        adapter = new FeedListAdapter(getActivity(), rootView);
         ListView listView = (ListView) rootView.findViewById(R.id.fragment_jsonfeed_listview);
         listView.setAdapter(adapter);
     }
 
     private void buildJSONFeed() {
 
-        URLtoJSONAsyncTask task = new URLtoJSONAsyncTask(URLtoParse, rootView.getContext(), new OnTaskCompleted() {
+        URLtoJSONAsyncTask task = new URLtoJSONAsyncTask(URLtoParse, rootView.getContext(), new OnTaskCompletedListener() {
             @Override
             public void OnTaskCompleted(Object jObject) {
                 jsonFeed = (JSONObject)jObject;
@@ -66,12 +66,12 @@ public class JSONFeedFragment extends Fragment {
 
     private void buildItemList() {
 
-        ArrayList<JSONFeedListItem> itemList = new ArrayList<JSONFeedListItem>();
+        ArrayList<FeedListItem> itemList = new ArrayList<FeedListItem>();
 
         try {
             for (int i = 0; i < jsonFeed.getJSONArray("rows").length(); i++) {
 
-                JSONFeedListItem item = new JSONFeedListItem();
+                FeedListItem item = new FeedListItem();
 
                 JSONObject jsonObject = jsonFeed.getJSONArray("rows").getJSONObject(i);
 
@@ -80,6 +80,9 @@ public class JSONFeedFragment extends Fragment {
                 item.setImageURL(jsonObject.getString("imageHref"));
 
                 item.setAdapter(adapter);
+
+                if (item.getTitleString().equals("null") && item.getDescription().equals("null") && item.getImageURL().equals("null"))
+                    continue;
 
                 itemList.add(item);
             }
