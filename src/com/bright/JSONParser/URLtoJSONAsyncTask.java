@@ -21,9 +21,9 @@ public class URLtoJSONAsyncTask extends AsyncTask<Void, Void, Void> {
     String URLtoParse;
     InputStream inputStream = null;
     String result = "";
-    OnURLtoJSONTaskCompleted listener;
+    OnTaskCompleted listener;
 
-    public URLtoJSONAsyncTask(String URLtoParse, Context ctx, OnURLtoJSONTaskCompleted listener) {
+    public URLtoJSONAsyncTask(String URLtoParse, Context ctx, OnTaskCompleted listener) {
         super();
         this.URLtoParse = URLtoParse;
         this.listener = listener;

@@ -2,7 +2,6 @@ package com.bright.JSONParser;
 
 import android.app.Fragment;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Josh on 3/15/2015.
@@ -43,10 +41,10 @@ public class JSONFeedFragment extends Fragment {
 
     private void buildJSONFeed() {
 
-        URLtoJSONAsyncTask task = new URLtoJSONAsyncTask(URLtoParse, rootView.getContext(), new OnURLtoJSONTaskCompleted() {
+        URLtoJSONAsyncTask task = new URLtoJSONAsyncTask(URLtoParse, rootView.getContext(), new OnTaskCompleted() {
             @Override
-            public void OnTaskCompleted(JSONObject jObject) {
-                jsonFeed = jObject;
+            public void OnTaskCompleted(Object jObject) {
+                jsonFeed = (JSONObject)jObject;
 
                 buildTitle();
                 buildItemList();
